@@ -13,11 +13,11 @@ import MainDashboard from "./components/MainDashboard.vue";
   </header>
 
   <main>
-    <MainDashboard msg="You did it!" />
+    <MainDashboard />
   </main>
 
-  <footer class="footer bg-dark">
-    <span class="ml-2">&copy; 2020 Upsub. All rights reserved.</span>
+  <footer class="footer container">
+    <span>&copy; 2020 Upsub. All rights reserved.</span>
   </footer>
 </template>
 
@@ -34,19 +34,13 @@ header.navbar {
   padding: 0.25rem;
   line-height: 1.5;
   border-bottom: solid 1px var(--color-border);
-}
-
-main {
-  margin-bottom: calc(0.5rem + var(--footer-height));
+  margin-bottom: 0.5rem;
 }
 
 .footer {
-  position: fixed;
+  position: relative;
   height: var(--footer-height);
-  left: 0;
-  bottom: 0;
-  right: 0;
-
+  margin-top: 0.5rem;
   display: flex;
   align-items: center;
 }
