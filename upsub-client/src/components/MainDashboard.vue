@@ -1,5 +1,7 @@
 <script lang="ts">
-import { defineComponent } from "vue";
+import { dashboardFeedHubFactoryKey } from "@/injection";
+import type DashboardFeedHubFactory from "@/real-time/DashboardFeedHub";
+import { defineComponent, inject } from "vue";
 
 type MockupTab = { id: number; loaded: boolean };
 
@@ -13,6 +15,16 @@ export default defineComponent({
       ] as MockupTab[],
     };
   },
+  async setup() {
+    const factory = inject<DashboardFeedHubFactory>(dashboardFeedHubFactoryKey);
+    if (factory == undefined) {
+      throw new Error("Hub Factory is undefined.");
+    }
+
+    return {
+      hub: await factory.create(),
+    };
+  },
   mounted() {
     this.tabs.forEach((value, index) => {
       setTimeout(() => {
@@ -24,33 +36,31 @@ export default defineComponent({
 </script>
 
 <template>
-  <div class="container">
-    <div class="columns">
-      <div class="column col-12">
-        <div class="card">
-          <div class="card-header">
-            <div class="card-title h5">
-              Space for some headings, summaries, buttons.
-            </div>
+  <div class="columns">
+    <div class="column col-12">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title h5">
+            Space for some headings, summaries, buttons.
           </div>
         </div>
       </div>
+    </div>
 
-      <div v-for="tab in tabs" :key="tab.id" class="column col-6 col-xl-12">
-        <div class="card">
-          <div class="card-header">
-            <div class="card-title h5">Title</div>
-            <div class="card-subtitle text-gray">Subtitle</div>
+    <div v-for="tab in tabs" :key="tab.id" class="column col-6 col-xl-12">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title h5">Title</div>
+          <div class="card-subtitle text-gray">Subtitle</div>
+        </div>
+        <div class="card-body">
+          <div v-if="tab.loaded">
+            <span>Tab loaded successfully.</span>
           </div>
-          <div class="card-body">
-            <div v-if="tab.loaded">
-              <span>Tab loaded successfully.</span>
-            </div>
-            <span v-else>Loading...</span>
-          </div>
-          <div class="card-footer">
-            <button class="btn btn-primary">...</button>
-          </div>
+          <span v-else>Loading...</span>
+        </div>
+        <div class="card-footer">
+          <button class="btn btn-primary">...</button>
         </div>
       </div>
     </div>

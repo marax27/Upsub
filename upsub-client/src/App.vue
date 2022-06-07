@@ -1,5 +1,13 @@
 <script setup lang="ts">
+import { onErrorCaptured, ref } from "vue";
 import MainDashboard from "./components/MainDashboard.vue";
+
+let errorMessage = ref<string | null>(null);
+let year = ref(new Date().getFullYear());
+
+onErrorCaptured((e) => {
+  errorMessage.value = e.message;
+});
 </script>
 
 <template>
@@ -12,12 +20,31 @@ import MainDashboard from "./components/MainDashboard.vue";
     </section>
   </header>
 
-  <main>
-    <MainDashboard />
+  <main class="container">
+    <div class="columns">
+      <div v-show="errorMessage" class="column col-8 col-lg-12">
+        <div class="toast toast-error">
+          <strong>Dashboard issue.</strong> {{ errorMessage }}
+        </div>
+      </div>
+    </div>
+
+    <Suspense>
+      <template #default>
+        <MainDashboard />
+      </template>
+      <template #fallback>
+        <div class="columns">
+          <div class="column col-12">
+            <div v-show="errorMessage == null" class="loading loading-lg"></div>
+          </div>
+        </div>
+      </template>
+    </Suspense>
   </main>
 
   <footer class="footer container">
-    <span>&copy; 2020 Upsub. All rights reserved.</span>
+    <span>&copy; {{ year }} Upsub. All rights reserved.</span>
   </footer>
 </template>
 
