@@ -10,10 +10,14 @@
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore"
   },
   "dependencies": {
+    "highcharts": "^10.1.0",
+    "highcharts-vue": "^1.4.0",
+    "spectre.css": "^0.5.9",
     "vue": "^3.2.36"
   },
   "devDependencies": {
     "@rushstack/eslint-patch": "^1.1.0",
+    "@types/highcharts": "^7.0.0",
     "@types/node": "^16.11.36",
     "@vitejs/plugin-vue": "^2.3.3",
     "@vue/eslint-config-prettier": "^7.0.0",
