@@ -6,7 +6,7 @@ import MainDashboard from "./components/MainDashboard.vue";
   <header class="navbar bg-primary">
     <section class="navbar-section">
       <a href="/">
-        <img alt="Vue logo" class="logo" src="./assets/logo.svg" height="36" />
+        <img alt="Logo" class="logo ml-2" src="./assets/logo.svg" height="36" />
       </a>
       <span class="navbar-brand ml-2 mr-2">Welcome to Upsub</span>
     </section>
