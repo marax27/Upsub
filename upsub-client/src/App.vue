@@ -3,6 +3,7 @@ import { onErrorCaptured, ref } from "vue";
 import MainDashboard from "./components/MainDashboard.vue";
 
 let errorMessage = ref<string | null>(null);
+let year = ref(new Date().getFullYear());
 
 onErrorCaptured((e) => {
   errorMessage.value = e.message;
@@ -40,7 +41,7 @@ onErrorCaptured((e) => {
   </main>
 
   <footer class="footer container">
-    <span>&copy; 2020 Upsub. All rights reserved.</span>
+    <span>&copy; {{ year }} Upsub. All rights reserved.</span>
   </footer>
 </template>
 
