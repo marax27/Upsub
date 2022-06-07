@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32505.426
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{7F13DD0C-0902-4D90-95B4-1EFF8E643903}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{0357BAD2-B868-4C22-ACDB-BC75E1106CF4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Upsub.Server.Api", "src\Upsub.Server.Api\Upsub.Server.Api.csproj", "{86ADCFAE-923F-4742-89D2-E7AD7CEB8BA7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{86ADCFAE-923F-4742-89D2-E7AD7CEB8BA7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{86ADCFAE-923F-4742-89D2-E7AD7CEB8BA7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{86ADCFAE-923F-4742-89D2-E7AD7CEB8BA7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{86ADCFAE-923F-4742-89D2-E7AD7CEB8BA7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{86ADCFAE-923F-4742-89D2-E7AD7CEB8BA7} = {7F13DD0C-0902-4D90-95B4-1EFF8E643903}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CF4570F8-2CAD-4DD7-8A5B-E396028406A6}
+	EndGlobalSection
+EndGlobal
