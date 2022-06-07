@@ -1,5 +1,7 @@
 <script lang="ts">
-import { defineComponent } from "vue";
+import { dashboardFeedHubFactoryKey } from "@/injection";
+import type DashboardFeedHubFactory from "@/real-time/DashboardFeedHub";
+import { defineComponent, inject } from "vue";
 
 type MockupTab = { id: number; loaded: boolean };
 
@@ -11,6 +13,16 @@ export default defineComponent({
         { id: 2, loaded: false },
         { id: 3, loaded: false },
       ] as MockupTab[],
+    };
+  },
+  async setup() {
+    const factory = inject<DashboardFeedHubFactory>(dashboardFeedHubFactoryKey);
+    if (factory == undefined) {
+      throw new Error("Hub Factory is undefined.");
+    }
+
+    return {
+      hub: await factory.create(),
     };
   },
   mounted() {

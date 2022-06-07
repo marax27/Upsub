@@ -13,7 +13,9 @@ import MainDashboard from "./components/MainDashboard.vue";
   </header>
 
   <main>
-    <MainDashboard />
+    <Suspense>
+      <MainDashboard />
+    </Suspense>
   </main>
 
   <footer class="footer container">
