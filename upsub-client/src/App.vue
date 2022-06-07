@@ -20,20 +20,23 @@ onErrorCaptured((e) => {
     </section>
   </header>
 
-  <main>
+  <main class="container">
+    <div class="columns">
+      <div v-show="errorMessage" class="column col-8 col-lg-12">
+        <div class="toast toast-error">
+          <strong>Dashboard issue.</strong> {{ errorMessage }}
+        </div>
+      </div>
+    </div>
+
     <Suspense>
       <template #default>
         <MainDashboard />
       </template>
       <template #fallback>
-        <div class="container">
-          <div class="columns">
-            <div v-if="errorMessage == null" class="column col-12">
-              <div class="loading loading-lg"></div>
-            </div>
-            <div v-else class="column col-8 col-lg-12">
-              <div class="toast toast-error">Error: {{ errorMessage }}</div>
-            </div>
+        <div class="columns">
+          <div class="column col-12">
+            <div v-show="errorMessage == null" class="loading loading-lg"></div>
           </div>
         </div>
       </template>
