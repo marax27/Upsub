@@ -1,5 +1,12 @@
 <script setup lang="ts">
+import { onErrorCaptured, ref } from "vue";
 import MainDashboard from "./components/MainDashboard.vue";
+
+let errorMessage = ref<string | null>(null);
+
+onErrorCaptured((e) => {
+  errorMessage.value = e.message;
+});
 </script>
 
 <template>
@@ -14,7 +21,21 @@ import MainDashboard from "./components/MainDashboard.vue";
 
   <main>
     <Suspense>
-      <MainDashboard />
+      <template #default>
+        <MainDashboard />
+      </template>
+      <template #fallback>
+        <div class="container">
+          <div class="columns">
+            <div v-if="errorMessage == null" class="column col-12">
+              <div class="loading loading-lg"></div>
+            </div>
+            <div v-else class="column col-8 col-lg-12">
+              <div class="toast toast-error">Error: {{ errorMessage }}</div>
+            </div>
+          </div>
+        </div>
+      </template>
     </Suspense>
   </main>
 
