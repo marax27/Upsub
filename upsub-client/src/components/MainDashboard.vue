@@ -2,16 +2,29 @@
 import { dashboardFeedHubFactoryKey } from "@/injection";
 import type DashboardFeedHubFactory from "@/real-time/DashboardFeedHub";
 import { defineComponent, inject } from "vue";
+import { Chart } from "highcharts-vue";
 
-type MockupTab = { id: number; loaded: boolean };
+type MockupTab = { id: number; loaded: boolean; options: unknown };
+
+function createPlotOptions(series: unknown[]): any {
+  return {
+    title: { text: "Plot title" },
+    subtitle: { text: "Plot subtitle" },
+    legend: { layout: "horizontal" },
+    series,
+  };
+}
 
 export default defineComponent({
+  components: {
+    Chart,
+  },
   data() {
     return {
       tabs: [
-        { id: 1, loaded: false },
-        { id: 2, loaded: false },
-        { id: 3, loaded: false },
+        { id: 1, loaded: false, options: [] },
+        { id: 2, loaded: false, options: [] },
+        { id: 3, loaded: false, options: [] },
       ] as MockupTab[],
     };
   },
@@ -26,6 +39,10 @@ export default defineComponent({
     };
   },
   mounted() {
+    this.hub.on("NewData", (data: unknown[]) => {
+      this.tabs[0].options = createPlotOptions(data);
+    });
+
     this.tabs.forEach((value, index) => {
       setTimeout(() => {
         this.tabs[index].loaded = true;
@@ -56,6 +73,7 @@ export default defineComponent({
         <div class="card-body">
           <div v-if="tab.loaded">
             <span>Tab loaded successfully.</span>
+            <Chart :options="tab.options"></Chart>
           </div>
           <span v-else>Loading...</span>
         </div>

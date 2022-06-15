@@ -5,6 +5,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddSignalR();
+builder.Services.AddControllers();
 if (IsDevelopment())
     builder.Services.AddCorsForDevelopment();
 
@@ -15,7 +16,7 @@ var app = builder.Build();
 if (IsDevelopment())
     app.UseCorsForDevelopment();
 app.MapHub<DashboardFeedHub>("dashboard-feed");
-app.MapGet("/hello", () => "Hello world!");
+app.MapControllers();
 
 app.Run();
 

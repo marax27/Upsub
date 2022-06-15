@@ -1,12 +1,10 @@
 import { type HubConnection, HubConnectionBuilder } from "@microsoft/signalr";
 
 export class DashboardFeedHub {
-  public constructor(private readonly connection: HubConnection) {
-    this.setupEvents();
-  }
+  public constructor(private readonly connection: HubConnection) {}
 
-  private setupEvents(): void {
-    console.warn("TODO setupEvents");
+  public on<T>(eventName: string, invoke: (data: T) => void): void {
+    this.connection.on(eventName, invoke);
   }
 }
 
